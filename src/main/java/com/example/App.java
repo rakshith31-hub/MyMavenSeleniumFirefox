@@ -12,9 +12,11 @@ public class App {
 
     public static void main(String[] args) {
 
-        // Firefox setup (IMPORTANT for Snap Firefox)
+        // Firefox setup (FIXED)
         FirefoxOptions options = new FirefoxOptions();
-        options.setBinary("/snap/firefox/current/usr/lib/firefox/firefox");
+        options.addArguments("--headless");  // IMPORTANT for Jenkins
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
 
         WebDriver driver = new FirefoxDriver(options);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
